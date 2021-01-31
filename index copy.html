@@ -50,49 +50,25 @@
                 </div>
             </div>
             <div class="input-group f-class">
-                <!-- <div>
-                    <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
-                </div>
-                <div class="plus-minus-btn">
-                    <p>+ -</p>
-                </div> -->
-                <!-- 1st -->
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="phone-count" type="text" value="1" class="inp-style inp-width">
-                </div>
-                <div class="plus-minus-btn">
-                    <button onclick="handleProductChange('phone', true)" class="btn btn-default plus-minus-btn"><i
-                        class="fas fa-plus"></i></button>
-                <!-- <input id="phone-count" type="text" class="form-control text-center" value="1"> -->
-                    <button onclick="handleProductChange('phone', false)" class="btn btn-default plus-minus-btn"><i
-                        class="fas fa-minus"></i></button>
-                </div>
-                
-            </div>
-
-            <div class="input-group f-class">
-                <!-- <div>
-                    <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width">
-                </div>
-                <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
-                </div> -->
-
-                <div>
-                    <label for="">First Class ($100)</label>
                     <input id="case-count" type="text" value="1" class="inp-style inp-width">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleProductChange('case', true)" class="btn btn-default plus-minus-btn"><i
-                        class="fas fa-plus"></i></button>
-                <!-- <input id="phone-count" type="text" class="form-control text-center" value="1"> -->
-                    <button onclick="handleProductChange('case', false)" class="btn btn-default plus-minus-btn"><i
-                        class="fas fa-minus"></i></button>
+                    <button id="case-increase" class="btn btn-default plus-minus-btn"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-default plus-minus-btn"><i class="fas fa-minus"></i></button>
                 </div>
+            </div>
 
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($100)</label>
+                    <input type="text" value="1" class="inp-style inp-width">
+                </div>
+                <div class="plus-minus-btn">
+                    <button class="btn btn-default plus-minus-btn"><i class="fas fa-plus"></i></button>                    
+                    <button onclick="handleProductChange('case', false)" class="btn btn-default plus-minus-btn"><i class="fas fa-minus"></i></button>
+                </div>
             </div>
             <div class="calculations">
                 <div class="amount">
@@ -100,7 +76,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id="total-price">$500</p>
+                        <p id="case-total">$150</p>
                     </div>
                 </div>
 
@@ -136,44 +112,14 @@
         <!--Thank You-->
 
         <script>
-            function handleProductChange(product, isIncrease) {
-                const productinput = document.getElementById(product + '-count');
-                const productCount = parseFloat(productinput.value);
-                let productNewCount = productCount;
-                if (isIncrease == true) {
-                    productNewCount = productCount + 1;
-                }
-                if (isIncrease == false && productCount > 0) {
-                    productNewCount = productCount - 1;
-                }
-                productinput.value = productNewCount;
-                let productTotal = 0;
-                if (product == 'phone') {
-                    productTotal = productNewCount * 150;
-                }
-                if (product == 'case') {
-                    productTotal = productNewCount * 100;
-                }
-                document.getElementById(product + '-total').innerHTML = "$" + productTotal;
-                calculateTotal();
-            }
-
-            function calculateTotal() {
-                const phoneInput = document.getElementById('total-price');
-                const phoneCount = parseInt(phoneInput.value);
-
-                const caseInput = document.getElementById('case-count');
+            document.getElementById('case-increase').addEventListener('click', function(){
+                const caseInput = document.getElementById('case-increase');
                 const caseCount = parseInt(caseInput.value);
-
-                const totalPrice = phoneCount * 150 + caseCount * 100;
-                document.getElementById('total-price').innerText = '$' + totalPrice;
-
-                const tax = Math.round(totalPrice * 0.1);
-                document.getElementById('tax-amount').innerText = '$' + tax;
-
-                const grandTotal = totalPrice + tax;
-                document.getElementById('grand-total').innerText = '$' + grandTotal;
-            }
+                const caseNewCount = caseCount + 1;
+                caseInput.value = caseNewCount;
+                const caseTotal = caseNewCount * 150;
+                document.getElementById('case-total').innerText = '$' + caseTotal;
+            })
         </script>
 </body>
 
